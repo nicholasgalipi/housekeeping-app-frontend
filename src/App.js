@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ChakraProvider } from '@chakra-ui/react'
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Grid, Spinner , Center, Box} from '@chakra-ui/react'
 import Card from './Card';
 import axios from "axios"
 
@@ -30,26 +29,19 @@ function App() {
     getData();
   }, []);
 
- console.log(data)
-  return (
-    <ChakraProvider>
-        <Grid templateColumns='repeat(5, 1fr)' gap={6}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-         
-      </Grid>
-    </ChakraProvider>
-  
-
-  
+  if(loading){  
+    return (
+          <Center>
+            <Spinner size='lg' color="purple.300" />
+          </Center>
   );
+  }else if(!loading){
+    return (
+          <Grid templateColumns='repeat(8, 1fr)' gap={3} p={3}>
+            {data.map((data) => { return <Card roomNumber={data.number} roomStatus={data.roomStatus}/>  } )}
+          </Grid>
+  );}
+
 }
 
 export default App;

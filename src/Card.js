@@ -1,25 +1,47 @@
 import * as React from "react";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, useColorModeValue,Tag,TagLabel,TagLeftIcon, Heading, VStack, Button, WrapItem } from "@chakra-ui/react";
 
-
-export default function Card() {
+export default function Card(props) {
   return (
    
-      <Box p="5" maxW="320px" borderWidth="1px">
-        {/* <Image borderRadius="md" src="https://bit.ly/2k1H1t6" /> */}
-        <Flex align="baseline" mt={2}>
-          <Text
-            ml={2}
-            textTransform="uppercase"
-            fontSize="20"
-            fontWeight="bold"
-            color="purple.300"
-          >
-           UH 20
-          </Text>
+      <Box 
+        p="5" 
+        maxW="200px" 
+        bg={useColorModeValue('white', 'gray.800')}
+        boxShadow={'2xl'}
+        rounded={'md'}
        
+      >
+
+        <VStack spacing={4}>
+        <Heading
+            HeadingTransform="uppercase"
+            fontSize="2xl"
+            fontWeight="bold"
+            color="purple.500"
+          >
+          UH {props.roomNumber}
+          </Heading>
+
+          <Text
+            HeadingTransform="uppercase"
+            fontSize="xs"
+            color="purple.500"
+          >
+          {props.roomStatus}
+          </Text>
          
-        </Flex>
+          
+
+          <WrapItem>
+            <Button colorScheme='purple' variant='outline' size='xs'>View</Button>
+           </WrapItem>
+
+        </VStack>
+        
+        {/* <Flex justify={'center'} align="center" mt={2}>
+        
+        </Flex> */}
       </Box>
    
   );
