@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Box, Flex, Text, useColorModeValue,Tag,TagLabel,TagLeftIcon, Heading, VStack, Button, WrapItem } from "@chakra-ui/react";
 
+
+
 export default function Card(props) {
   return (
    
@@ -31,18 +33,14 @@ export default function Card(props) {
           {props.roomStatus}
           </Text>
          
-          
-
           <WrapItem>
-            <Button colorScheme='purple' variant='outline' size='xs'>View</Button>
-           </WrapItem>
+
+          <Button  colorScheme='purple' variant='outline' size='xs'>View</Button>
+          </WrapItem>
 
         </VStack>
         
-        {/* <Flex justify={'center'} align="center" mt={2}>
-        
-        </Flex> */}
-      </Box>
+       </Box>
    
   );
 }

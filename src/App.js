@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Spinner , Center, Box} from '@chakra-ui/react'
-import Card from './Card';
+import { Grid, Spinner, Center, Box, WrapItem } from '@chakra-ui/react';
+import Card from './Components/Card';
 import axios from "axios"
+import Header from './Components/Header';
+import ScreenAdim from './Components/ScreenAdmin'
 
 function App() {
 
@@ -37,10 +39,21 @@ function App() {
   );
   }else if(!loading){
     return (
-          <Grid templateColumns='repeat(8, 1fr)' gap={3} p={3}>
-            {data.map((data) => { return <Card roomNumber={data.number} roomStatus={data.roomStatus}/>  } )}
-          </Grid>
-  );}
+      <>
+        <Header />
+
+        <Grid templateColumns="repeat(8, 1fr)" gap={3} p={3}>
+          {data.map(data => {
+            return (
+              <Card roomNumber={data.number} roomStatus={data.roomStatus} />
+            );
+          })}
+        </Grid>
+        <ScreenAdim roomNumber={data[0].number} />
+      </>
+    );
+}
+ 
 
 }
 
