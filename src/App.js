@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Spinner, Center, Box, WrapItem } from '@chakra-ui/react';
 import Card from './Components/Card';
 import axios from "axios"
-import Header from './Components/Header';
-import ScreenAdim from './Components/ScreenAdmin'
+import Header from './Components/HeaderAdmin';
+import ScreenAdmin from './Components/ScreenAdmin'
+import ScreenColab from './Components/SreenColab'
 
 function App() {
 
@@ -12,7 +13,23 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  
+  const editCard = () => {
+    console.log('teste')
+    return <ScreenAdmin/>
+    
+  }
+
+const renderCard = () => {
+  return (
+      <><Header />
+      <Grid templateColumns="repeat(8, 1fr)" gap={3} p={3}>
+      {data.map(data => {
+        return <Card roomNumber={data.number} roomStatus={data.roomStatus} editCard={editCard}/>;
+      })}
+    </Grid></>
+  );
+}
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -39,21 +56,17 @@ function App() {
   );
   }else if(!loading){
     return (
-      <>
-        <Header />
-
-        <Grid templateColumns="repeat(8, 1fr)" gap={3} p={3}>
-          {data.map(data => {
-            return (
-              <Card roomNumber={data.number} roomStatus={data.roomStatus} />
-            );
-          })}
-        </Grid>
-        <ScreenAdim roomNumber={data[0].number} />
-      </>
+     renderCard()
+      // <ScreenAdim roomNumber={data[0].number} roomStatus={data[0].roomStatus} />
+      // <ScreenColab
+      //   roomNumber={data[0].number}
+      //   roomStatus={data[0].roomStatus}
+        // employee={data[0].employees.name}
+      
     );
 }
- 
+        
+
 
 }
 

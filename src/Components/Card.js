@@ -1,8 +1,6 @@
 import * as React from "react";
 import { Box, Flex, Text, useColorModeValue,Tag,TagLabel,TagLeftIcon, Heading, VStack, Button, WrapItem } from "@chakra-ui/react";
 
-
-
 export default function Card(props) {
   return (
    
@@ -35,7 +33,7 @@ export default function Card(props) {
          
           <WrapItem>
 
-          <Button  colorScheme='purple' variant='outline' size='xs'>View</Button>
+          <Button onClick={props.editCard}  colorScheme='purple' variant='outline' size='xs'>View</Button>
           </WrapItem>
 
         </VStack>
@@ -43,4 +41,5 @@ export default function Card(props) {
        </Box>
    
   );
+  
 }
