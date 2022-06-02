@@ -2,7 +2,7 @@
 import { useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
-import { Grid, Spinner , Center, Flex, Text, useColorModeValue,Tag,TagLabel,TagLeftIcon, Heading, VStack, Button, WrapItem,Box} from '@chakra-ui/react'
+import { Grid, Spinner , Center, Flex, Text, useColorModeValue,Tag,TagLabel,TagLeftIcon, Heading, VStack, Button, WrapItem,Box, Stack,Select} from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
 
 
@@ -43,10 +43,10 @@ function AdminEditScreen() {
     
         <>
             
-            <VStack paddingTop={"20%"}>
+            <VStack paddingTop={"10%"}>
                 <Box
                     p="5" 
-                    maxW="200px" 
+                    minW="400px" 
                     bg={'white'}
                     boxShadow={'2xl'}
                     rounded={'md'}
@@ -54,18 +54,51 @@ function AdminEditScreen() {
                     <VStack spacing={4}>
                         <Heading
                         HeadingTransform="uppercase"
-                        fontSize="2xl"
+                        fontSize="lg"
                         fontWeight="bold"
                         color="purple.500"
                         >
-                        Edit UH {data.number} status.
+                        UH {data.number}
                         </Heading>
+
+                        <Text
+                            HeadingTransform="uppercase"
+                            fontSize="xs"
+                            color="purple.500"
+                            >
+                            Current status is {data.roomStatus}
+                        </Text>
                         
-                        <Link to={'/admin'}>
+                        <Stack  direction={'row'} spacing={2}>
+                            <Text
+                            mt={0.5}
+                                HeadingTransform="uppercase"
+                                fontSize="sm"
+                                color="purple.500"
+                                >
+                                Status:
+                            </Text>
+
+                            <Select placeholder='' size='xs' borderColor='purple.300' >
+                                <option value='option1'>Occupied</option>
+                                <option value='option2'>Ready for guest</option>
+                                <option value='option3'>Waiting cleaning</option>
+                            </Select>
+                        </Stack>
+                        
+                        <Stack mt={8} direction={'row'} spacing={4}>
+                            
+
+                            <Link to={'/admin'}>
+                                <WrapItem>
+                                <Button colorScheme='purple' variant='outline' size='xs'>Cancel</Button>
+                                </WrapItem>
+                            </Link>
+
                             <WrapItem>
-                             <Button colorScheme='purple' variant='outline' size='xs'>Cancel</Button>
+                                <Button colorScheme='purple' variant='solid' size='xs'>Submit</Button>
                             </WrapItem>
-                        </Link>
+                        </Stack>
 
                     </VStack>
                         

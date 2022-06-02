@@ -32,7 +32,7 @@ export default function Card(props) {
           {props.roomStatus}
           </Text>
          
-          <Text>{props.roomID}</Text>
+          
 
           <Link to={props.roomID}>
             <WrapItem>
