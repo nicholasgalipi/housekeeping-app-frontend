@@ -1,46 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { Grid, Spinner , Center, Box} from '@chakra-ui/react'
-import Card from './Card';
-import axios from "axios"
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import AdminScreen from './components/admin/AdminScreen';
+import AdminEditScreen from './components/admin/AdminEditScreen';
 
 function App() {
 
- 
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  
-  
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/rooms/allRooms`
-        );
-        setData(response.data);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-        setData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getData();
-  }, []);
+  return(
+    <BrowserRouter>
+      <Routes>
+        <Route path='admin' element={<AdminScreen />}/>
+        <Route path='/admin/:roomID' element={<AdminEditScreen />} />
 
-  if(loading){  
-    return (
-          <Center>
-            <Spinner size='lg' color="purple.300" />
-          </Center>
-  );
-  }else if(!loading){
-    return (
-          <Grid templateColumns='repeat(8, 1fr)' gap={3} p={3}>
-            {data.map((data) => { return <Card roomNumber={data.number} roomStatus={data.roomStatus}/>  } )}
-          </Grid>
-  );}
+    
+       
+        
+      </Routes>
+    </BrowserRouter>
+  )
+ 
+  
 
 }
 
