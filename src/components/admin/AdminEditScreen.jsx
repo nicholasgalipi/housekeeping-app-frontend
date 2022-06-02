@@ -58,7 +58,7 @@ function AdminEditScreen() {
                         fontWeight="bold"
                         color="purple.500"
                         >
-                        UH {data.number}
+                        Edit UH {data.number} status.
                         </Heading>
                         
                         <Link to={'/admin'}>
