@@ -6,7 +6,11 @@ function EmployeePicker({employeeHandler}) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-  
+    
+    const employeeIdHandler = (name) =>{
+        let emp = data.filter((data) => {return data.name === name})
+        employeeHandler(emp[0]._id)
+    }
     useEffect(() => {
         const getData = async () => {
         try {
@@ -29,7 +33,7 @@ function EmployeePicker({employeeHandler}) {
     }
     if(!loading){
         return (
-            <Select onChange={(e) => {employeeHandler(e.target.value)}} placeholder='Employee name'>
+            <Select onChange={(e) => {employeeIdHandler(e.target.value)}} placeholder='Employee name'>
                 {data.map((data) => {return <option key={data.name} value={data.name}>{data.name}</option>})}
                
             </Select>

@@ -12,19 +12,24 @@ function EditRoomForm({status, roomData}) {
   const employeeHandler = (emp ) => {
     setEmployee(emp)
   }
-  const handleSubmitOccupied = async (e) => {
-    e.preventDefault();
-    await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=${guestName}&roomStatus=Occupied&obs=&assigned=false&assignedTo=`);
-    navigate("/admin", { replace: true });
-}
-    const handleSubmitReady= async (e) => {
-    e.preventDefault();
-    await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=&roomStatus=Ready for guest&obs=&assigned=false&assignedTo=`);
-    navigate("/admin", { replace: true });
-    }
-    const handleSubmitCleaning= async (e) => {
+    const handleSubmitOccupied = async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=&roomStatus=Assigned for cleaning&obs=&assigned=true&assignedTo=`);
+        await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=${guestName}&roomStatus=Occupied&obs=&assigned=false&assignedTo=`);
+        navigate("/admin", { replace: true });
+    }
+    const handleSubmitReady= async (e) => {
+        e.preventDefault();
+        await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=&roomStatus=Ready for guest&obs=&assigned=false&assignedTo=`);
+        navigate("/admin", { replace: true });
+    }
+    const handleSubmitAssignedCleaning = async (e) => {
+        e.preventDefault();
+        await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=&roomStatus=Assigned for cleaning&obs=&assigned=true&assignedTo=${employee}`);
+        navigate("/admin", { replace: true });
+    }
+    const handleSubmitWaitingCLeaning = async (e) => {
+        e.preventDefault();
+        await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=&roomStatus=Waiting cleaning&obs=&assigned=false&assignedTo=`);
         navigate("/admin", { replace: true });
     }
     
@@ -63,9 +68,9 @@ function EditRoomForm({status, roomData}) {
             )
   }
 
-  if(status === 'Waiting cleaning'){
+  if(status === 'Assigned for cleaning'){
     return (
-            <form onSubmit={handleSubmitCleaning}>
+            <form onSubmit={handleSubmitAssignedCleaning}>
 
                 <Stack   direction={'row'} spacing={2}>
                     <Text
@@ -101,6 +106,26 @@ function EditRoomForm({status, roomData}) {
   if(status === 'Ready for guest'){
     return (
             <form onSubmit={handleSubmitReady}>
+
+               
+               <Stack mt={8} direction={'row'} spacing={10} justifyContent='center'>
+                    <Link to={'/admin'}>
+                        <WrapItem>
+                            <Button colorScheme='purple' variant='outline' size='lg'>Cancel</Button>
+                        </WrapItem>
+                    </Link>
+
+                    <WrapItem>
+                                <Button type="submit"  colorScheme='purple' variant='solid' size='lg'>Submit</Button>
+                    </WrapItem>
+                </Stack>
+            </form>
+            )
+  }
+
+  if(status === 'Waiting cleaning'){
+    return (
+            <form onSubmit={handleSubmitWaitingCLeaning}>
 
                
                <Stack mt={8} direction={'row'} spacing={10} justifyContent='center'>

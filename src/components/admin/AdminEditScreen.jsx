@@ -41,7 +41,7 @@ function AdminEditScreen() {
                 <Spinner size='lg' color="purple.300" />
               </Center>
       );
-      }else if(!loading){
+    }else if(!loading){
       
         return (
     
@@ -96,6 +96,7 @@ function AdminEditScreen() {
                                 <option value='Occupied'>Occupied</option>
                                 <option value='Ready for guest'>Ready for guest</option>
                                 <option value='Waiting cleaning'>Waiting cleaning</option>
+                                <option value='Assigned for cleaning'>Assigned cleaning</option>
                             </Select>
                         </Stack>
                         
