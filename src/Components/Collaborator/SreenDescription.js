@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Spinner } from '@chakra-ui/react';
 import axios from 'axios';
-import Header from './HeaderAdmin';
-import { Grid, GridItem } from '@chakra-ui/react';
-
+import HeaderColab from './HeaderColab.js';
+import { Checkbox, CheckboxGroup, Stack} from '@chakra-ui/react';
+import { Textarea } from '@chakra-ui/react'
 import {
-  Box,
-  Flex,
   Text,
-  VStack,
-  Button,
-  WrapItem,
   Center,
- 
+  Box,
+  VStack,
+  Heading,
+  WrapItem,
+  Button,
+  Grid,
 } from '@chakra-ui/react';
-import { Select } from '@chakra-ui/react';
+import TextArea from './TextArea.js';
 
-export default function ScreenAdim(props) {
-  const [data, setData] = useState(null);
+
+
+export default function ScreenDescription(props) {  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -39,6 +40,7 @@ export default function ScreenAdim(props) {
     };
     getData();
   }, []);
+  
 
   if (loading) {
     return (
@@ -46,26 +48,15 @@ export default function ScreenAdim(props) {
         <Spinner size="lg" color="purple.300" />
       </Center>
     );
-  } else if (!loading) {
+  } else if (!loading)  {
     return (
       <>
-        <Header />
-
+        <HeaderColab />
         <Center>
-          {/* <Box */}
-          {/* p="200"
-    maxW="600px"
-    bg={'white'}
-    boxShadow={'2xl'}
-    rounded={'md'}
-    margin="30px"
-  > */}
           <VStack spacing={20}>
-            {/* <Flex */}
             <Grid
-              h="500px"
-              w="500px"
-              // templateRows="repeat(2, 1fr)"
+              h="600px"
+              w="600px"
               templateColumns="1fr"
               gap={4}
               HeadingTransform="uppercase"
@@ -73,15 +64,13 @@ export default function ScreenAdim(props) {
               fontWeight="bold"
               color="purple.500"
               paddingTop={0}
-              marginTop="50px"
+              marginTop="30px"
               boxShadow={'2xl'}
               rounded={'md'}
               textAlign="center"
             >
-              {/* > */}
               UH
               {props.roomNumber}
-              
               <Text
                 HeadingTransform="uppercase"
                 fontSize="xs"
@@ -92,34 +81,41 @@ export default function ScreenAdim(props) {
                 HeadingTransform="uppercase"
                 fontSize="xs"
                 color="purple.500"
-              >
-                <Select
-                  placeholder="ATRIBUIR COLABORADOR"
-                  w={400}
-                  margin="50px"
-                >
-                  {data.map(data => {
-                    return <option>{data.name}</option>;
-                  })}
-                </Select>
-              </Text>
+                marginBottom={10}
+              ></Text>
+              <Center>
+                <Stack spacing={[1, 5]} direction={['column']}>
+                  <Checkbox size="lg">Limpeza Geral do Quarto</Checkbox>
+                  <Checkbox size="lg" defaultChecked>
+                    Limpeza Banheiro
+                  </Checkbox>
+                  <Checkbox size="lg" defaultChecked>
+                    Arrumação de Camas
+                  </Checkbox>
+                </Stack>
+              </Center>
+              
               <WrapItem>
-                <Button
+                <Button 
                   colorScheme="purple"
                   variant="outline"
                   size="xs"
                   margin="220px"
-                  marginTop={40}
+                  marginTop={10}
+                  w="200px"
+                  h={10}
                 >
-                  SELECIONAR
+                  RELATAR OCORRENCIA
                 </Button>
               </WrapItem>
             </Grid>
-            {/* </Flex> */}
           </VStack>
-          {/* </Box> */}
         </Center>
       </>
     );
   }
 }
+    
+    
+    
+

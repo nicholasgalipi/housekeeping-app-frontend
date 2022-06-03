@@ -2,19 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Spinner } from '@chakra-ui/react';
 import axios from 'axios';
 import HeaderColab from './HeaderColab.js';
-import { Grid, GridItem } from '@chakra-ui/react';
-
-import {
-  Box,
-  Flex,
-  Text,
-  VStack,
-  Button,
-  WrapItem,
-  Center,
-} from '@chakra-ui/react';
-import { Select } from '@chakra-ui/react';
-import Card from './Card.js';
+import {Text, Center} from '@chakra-ui/react';
 
 export default function ScreenColab(props) {
   const [data, setData] = useState(null);

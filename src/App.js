@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Spinner, Center, Box, WrapItem } from '@chakra-ui/react';
-import Card from './Components/Card';
+import Card from './Components/Administrator/Card';
 import axios from "axios"
-import Header from './Components/HeaderAdmin';
-import ScreenAdmin from './Components/ScreenAdmin'
-import ScreenColab from './Components/SreenColab'
+import Header from './Components/Administrator/HeaderAdmin';
+import ScreenAdmin from './Components/Administrator/ScreenAdmin'
+import ScreenColab from './Components/Collaborator/SreenColab'
+import ScreenDescription from './Components/Collaborator/SreenDescription';
+import TextArea from './Components/Collaborator/TextArea'
+
 
 function App() {
 
@@ -56,14 +59,12 @@ const renderCard = () => {
   );
   }else if(!loading){
     return (
-     renderCard()
-      // <ScreenAdim roomNumber={data[0].number} roomStatus={data[0].roomStatus} />
-      // <ScreenColab
-      //   roomNumber={data[0].number}
-      //   roomStatus={data[0].roomStatus}
-        // employee={data[0].employees.name}
-      
-    );
+      //renderCard()
+      //<ScreenAdmin roomNumber={data[0].number} roomStatus={data[0].roomStatus} />
+      // <ScreenColab roomNumber={data[0].number}roomStatus={data[0].roomStatus} employee={data[0].employees.name}
+      //<ScreenDescription roomNumber={data[0].number} roomStatus={data[0].roomStatus} />
+      <TextArea/>
+      );
 }
         
 
