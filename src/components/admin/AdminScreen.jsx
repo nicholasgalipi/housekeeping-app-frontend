@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Spinner , Center, Box} from '@chakra-ui/react'
 import Card from './Card';
 import axios from "axios"
-import { Routes, Route, Outlet } from "react-router-dom";
+import HeaderAdmin from './HeaderAdmin';
 
 function AdminScreen() {
   
@@ -37,9 +37,10 @@ function AdminScreen() {
   );
   }else if(!loading){
     return (
-        <>
+        <> 
+          <HeaderAdmin />
           <Grid templateColumns='repeat(8, 1fr)' gap={3} p={3}>
-            {data.map((data) => { return <Card roomNumber={data.number} roomStatus={data.roomStatus} roomID={data._id}/>  } )}
+            {data.map((data) => { return <Card roomNumber={data.number} roomStatus={data.roomStatus} roomID={data._id} guestName={data.nameOfGuest}/>  } )}
           </Grid>
       
 

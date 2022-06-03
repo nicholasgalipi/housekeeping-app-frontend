@@ -2,17 +2,20 @@
 import { useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
-import { Grid, Spinner , Center, Flex, Text, useColorModeValue,Tag,TagLabel,TagLeftIcon, Heading, VStack, Button, WrapItem,Box, Stack,Select} from '@chakra-ui/react'
-import { Link } from 'react-router-dom';
-
+import { Spinner , Center, Text, Heading, VStack,Box, Stack,Select} from '@chakra-ui/react'
+import HeaderAdmin from './HeaderAdmin';
+import StatusTag from './StatusTag';
+import EditRoomForm from './EditRoomForm';
+import ShowGuestName from './ShowGuestName';
 
 function AdminEditScreen() {
     let { roomID } = useParams()
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-  
-  
+    const [newRoomStatus,setNewRoomStatus] = useState("test");
+
+
     useEffect(() => {
         const getData = async () => {
         try {
@@ -39,10 +42,11 @@ function AdminEditScreen() {
               </Center>
       );
       }else if(!loading){
+      
         return (
     
         <>
-            
+            <HeaderAdmin />
             <VStack paddingTop={"10%"}>
                 <Box
                     p="5" 
@@ -51,54 +55,51 @@ function AdminEditScreen() {
                     boxShadow={'2xl'}
                     rounded={'md'}
                     >
-                    <VStack spacing={4}>
+                    <VStack spacing={3}>
                         <Heading
                         HeadingTransform="uppercase"
-                        fontSize="lg"
+                        fontSize="6xl"
                         fontWeight="bold"
                         color="purple.500"
+                        pt={8}
                         >
                         UH {data.number}
                         </Heading>
 
                         <Text
+                        
                             HeadingTransform="uppercase"
-                            fontSize="xs"
+                            fontSize='md'
                             color="purple.500"
                             >
-                            Current status is {data.roomStatus}
+                            Current status is <StatusTag status={data.roomStatus}/>
                         </Text>
-                        
-                        <Stack  direction={'row'} spacing={2}>
-                            <Text
-                            mt={0.5}
-                                HeadingTransform="uppercase"
-                                fontSize="sm"
-                                color="purple.500"
-                                >
-                                Status:
-                            </Text>
 
-                            <Select placeholder='' size='xs' borderColor='purple.300' >
-                                <option value='option1'>Occupied</option>
-                                <option value='option2'>Ready for guest</option>
-                                <option value='option3'>Waiting cleaning</option>
+                        <ShowGuestName guestName={data.nameOfGuest}/>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                         
+                        <Stack  direction={'row'} spacing={2} pt={10} pb={4}>
+                            <Select 
+                                onChange={(e) => {setNewRoomStatus(e.target.value)}} 
+                                placeholder='Select new status' 
+                                size='md' 
+                                borderColor='purple.500' 
+                          
+                                
+                                >
+                                <option value='Occupied'>Occupied</option>
+                                <option value='Ready for guest'>Ready for guest</option>
+                                <option value='Waiting cleaning'>Waiting cleaning</option>
                             </Select>
                         </Stack>
                         
-                        <Stack mt={8} direction={'row'} spacing={4}>
-                            
-
-                            <Link to={'/admin'}>
-                                <WrapItem>
-                                <Button colorScheme='purple' variant='outline' size='xs'>Cancel</Button>
-                                </WrapItem>
-                            </Link>
-
-                            <WrapItem>
-                                <Button colorScheme='purple' variant='solid' size='xs'>Submit</Button>
-                            </WrapItem>
-                        </Stack>
+                        <EditRoomForm status={newRoomStatus} roomData={data} />
 
                     </VStack>
                         
