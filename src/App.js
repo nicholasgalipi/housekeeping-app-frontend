@@ -59,11 +59,11 @@ const renderCard = () => {
   );
   }else if(!loading){
     return (
-      //renderCard()
+     // renderCard()
       //<ScreenAdmin roomNumber={data[0].number} roomStatus={data[0].roomStatus} />
-      // <ScreenColab roomNumber={data[0].number}roomStatus={data[0].roomStatus} employee={data[0].employees.name}
-      //<ScreenDescription roomNumber={data[0].number} roomStatus={data[0].roomStatus} />
-      <TextArea/>
+      //<ScreenColab roomNumber={data[0].number}roomStatus={data[0].roomStatus} />
+      <ScreenDescription roomNumber={data[0].number} roomStatus={data[0].roomStatus} />
+      //<TextArea/>
       );
 }
         

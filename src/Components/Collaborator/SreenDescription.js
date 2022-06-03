@@ -21,6 +21,7 @@ import TextArea from './TextArea.js';
 export default function ScreenDescription(props) {  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+   const [click, setClick] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
@@ -41,7 +42,11 @@ export default function ScreenDescription(props) {  const [data, setData] = useS
     getData();
   }, []);
   
-
+  if (!click) {
+      return (
+          <TextArea/>
+      )
+  }
   if (loading) {
     return (
       <Center>
@@ -55,10 +60,10 @@ export default function ScreenDescription(props) {  const [data, setData] = useS
         <Center>
           <VStack spacing={20}>
             <Grid
-              h="600px"
+              h="650px"
               w="600px"
               templateColumns="1fr"
-              gap={4}
+              gap={5}
               HeadingTransform="uppercase"
               fontSize="2xl"
               fontWeight="bold"
@@ -94,9 +99,9 @@ export default function ScreenDescription(props) {  const [data, setData] = useS
                   </Checkbox>
                 </Stack>
               </Center>
-              
               <WrapItem>
-                <Button 
+                <Button
+                  onClick={setClick}
                   colorScheme="purple"
                   variant="outline"
                   size="xs"
@@ -108,6 +113,45 @@ export default function ScreenDescription(props) {  const [data, setData] = useS
                   RELATAR OCORRENCIA
                 </Button>
               </WrapItem>
+              <Button
+                onClick={setClick}
+                colorScheme="purple"
+                variant="outline"
+                size="xs"
+                margin="220px"
+                marginTop={-220}
+                marginBottom={0}
+                w="200px"
+                h={10}
+              >
+                SOLICITAR MANUTENÇÃO
+              </Button>
+              <Button
+                onClick={setClick}
+                colorScheme="purple"
+                variant="outline"
+                background="gray.200"
+                size="xs"
+                margin="270px"
+                marginTop={-180}
+                w="100px"
+                h={10}
+              >
+                FINALIZAR
+              </Button>
+              <Button
+                onClick={setClick}
+                colorScheme="purple"
+                variant="outline"
+                background="red.200"
+                size="xs"
+                margin="270px"
+                marginTop={-270}
+                w="100px"
+                h={10}
+              >
+                CANCELAR
+              </Button>
             </Grid>
           </VStack>
         </Center>
