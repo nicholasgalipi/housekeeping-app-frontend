@@ -2,7 +2,6 @@ import { Box, Text, HStack, Button} from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 
 function UserScreenBtn({data, roomNumber}) {
-  console.log(data)
 
   return (
     <Box bg='white' w='100%' p={4} color='Black' boxShadow={'md'} borderWidth='1px'>

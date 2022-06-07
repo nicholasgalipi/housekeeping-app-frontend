@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Spinner , Center, Box} from '@chakra-ui/react'
-import { useParams } from 'react-router-dom';
+import { useParams, } from 'react-router-dom';
 import axios from "axios"
 import UserScreenBtn from './UserScreenBtn';
 import HeaderUser from './HeaderUser';
