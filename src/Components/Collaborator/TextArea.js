@@ -21,9 +21,26 @@ export default function TextArea(props) {
             onChange={handleInputChange}
             placeholder="Ocorrência"
             size="xs"
-        //    marginTop={-150}
+        
           />
         </>
       );
 }
+  // if (!props.clickM) {
+  //   return;
+  // }
+  // if (props.clickM) {
+  //   return (
+  //     <>
+        
+  //       <Textarea
+  //         value={value}
+  //         onChange={handleInputChange}
+  //         placeholder="Manutenção"
+  //         size="xs"
+          
+  //       />
+  //     </>
+  //   );
+  // }
 }

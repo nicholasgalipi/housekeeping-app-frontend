@@ -20,6 +20,8 @@ export default function ScreenDescription(props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [click, setClick] = useState(false);
+  const [clickM, setClickM] = useState(false);
+
 
   useEffect(() => {
     const getData = async () => {
@@ -39,6 +41,23 @@ export default function ScreenDescription(props) {
     };
     getData();
   }, []);
+
+  function handleClick () {
+    if (click){
+      setClick(false)
+    } else {
+    setClick(true)
+  }
+    
+  }
+
+  function handleClickM() {
+    if (clickM) {
+      setClickM(false);
+    } else {
+      setClickM(true);
+    }
+  }
 
   if (loading) {
     return (
@@ -62,8 +81,6 @@ export default function ScreenDescription(props) {
               fontSize="2xl"
               fontWeight="bold"
               color="purple.500"
-              //   paddingTop={0}
-              //   marginTop="30px"
               boxShadow={'2xl'}
               rounded={'md'}
               textAlign="center"
@@ -94,10 +111,11 @@ export default function ScreenDescription(props) {
                 <WrapItem>
                   <Center>
                     <Button
-                      onClick={setClick}
+                      onClick={handleClick}
                       colorScheme="purple"
                       variant="outline"
                       size="xs"
+                  
                     >
                       RELATAR OCORRENCIA
                     </Button>
@@ -111,7 +129,7 @@ export default function ScreenDescription(props) {
                 <WrapItem>
                   <Center>
                     <Button
-                      onClick={setClick}
+                      onClick={handleClickM}
                       colorScheme="purple"
                       variant="outline"
                       size="xs"
@@ -122,13 +140,13 @@ export default function ScreenDescription(props) {
                 </WrapItem>
               </Wrap>
 
-              <TextArea click={click} />
+              <TextArea click={clickM} />
               
               <Wrap justify={'center'}>
                 <WrapItem>
                   <Center>
                     <Button
-                      onClick={setClick}
+                     
                       colorScheme="purple"
                       variant="outline"
                       background="gray.200"
@@ -143,7 +161,7 @@ export default function ScreenDescription(props) {
                 <WrapItem>
                   <Center>
                     <Button
-                      onClick={setClick}
+                     
                       colorScheme="purple"
                       variant="outline"
                       background="red.200"
