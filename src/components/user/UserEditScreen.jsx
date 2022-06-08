@@ -31,7 +31,8 @@ if(!check1 || !check2 || !check3 || !check4){ canSubmit = false}
 //form submit
 const handleSubmit = async (e) => {
   e.preventDefault();
-  // await axios.put(`http://localhost:3001/rooms/${roomNumber}/updateRoom?&nameOfGuest=&roomStatus=Ready for guest&obs=&assigned=false&assignedTo=`);
+  await axios.put(`http://localhost:3001/rooms/${data._id}/updateRoom?nameOfGuest=&roomStatus=Ready for guest&obs=&assigned=false&assignedTo=`);
+  await axios.put(`http://localhost:3001/employee/${employeeID}/removeRoom?&roomID=${roomid}`);
   navigate(`/user/${employeeID}`, { replace: true });
   console.log('submit is working!')
 }
@@ -45,6 +46,7 @@ useEffect(() => {
        );
        setData(response.data);
        setError(null);
+       console.log(data)
      } catch (err) {
        setError(err.message);
        setData(null);
