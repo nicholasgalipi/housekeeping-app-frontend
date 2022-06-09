@@ -42,10 +42,7 @@ export default function HeaderAdmin() {
     <>
       <Box bg={'purple.200'} p={2} boxShadow={'md'} >
         <Flex h={10} alignItems={'center'} justifyContent={'space-between'}>
-          {/* <HStack spacing={8} alignItems={'center'}>
-            <Box color={'blackAlpha.800'}><strong>N&R</strong></Box>
-          </HStack> */}
-
+        
          
         <HStack pl={3}>
 
