@@ -32,7 +32,7 @@ if(!check1 || !check2 || !check3 || !check4){ canSubmit = false}
 const handleSubmit = async (e) => {
   e.preventDefault();
   await axios.put(`http://localhost:3001/rooms/${data._id}/updateRoom?nameOfGuest=&roomStatus=Ready for guest&obs=&assigned=false&assignedTo=`);
-  await axios.put(`http://localhost:3001/employee/${employeeID}/removeRoom?&roomID=${roomid}`);
+  await axios.put(`http://localhost:3001/employee/${employeeID}/removeRoom?&roomID=${roomNumber}`);
   navigate(`/user/${employeeID}`, { replace: true });
   console.log('submit is working!')
 }
