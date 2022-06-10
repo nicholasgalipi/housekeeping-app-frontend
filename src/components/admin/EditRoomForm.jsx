@@ -86,8 +86,6 @@ function EditRoomForm({status, roomData}) {
                     <EmployeePicker employeeHandler={employeeHandler}/>
                 </Stack>
 
-
-
                 <Stack mt={8} direction={'row'} spacing={10} justifyContent='center'>
                     <Link to={'/admin'}>
                         <WrapItem>

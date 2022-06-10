@@ -76,22 +76,13 @@ function AdminEditScreen() {
                         </Text>
 
                         <ShowGuestName guestName={data.nameOfGuest}/>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                         
+                                          
                         <Stack  direction={'row'} spacing={2} pt={10} pb={4}>
                             <Select 
                                 onChange={(e) => {setNewRoomStatus(e.target.value)}} 
                                 placeholder='Select new status' 
                                 size='md' 
-                                borderColor='purple.500' 
-                          
-                                
+                                borderColor='purple.500'                               
                                 >
                                 <option value='Occupied'>Occupied</option>
                                 <option value='Ready for guest'>Ready for guest</option>
@@ -103,8 +94,7 @@ function AdminEditScreen() {
                         <EditRoomForm status={newRoomStatus} roomData={data} />
 
                     </VStack>
-                        
-                        
+                                           
                         
                 </Box>
             </VStack>

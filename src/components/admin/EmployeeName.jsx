@@ -32,7 +32,7 @@ function EmployeeName({employeeID}) {
         if(!loading){
             return (
                 <Text
-                         HeadingTransform="uppercase"
+                        HeadingTransform="uppercase"
                         fontSize='md'
                         color="purple.500"
                         >

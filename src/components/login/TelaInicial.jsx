@@ -16,6 +16,7 @@ import { Radio, RadioGroup } from '@chakra-ui/react';
 import HeaderAdmin from '../admin/HeaderAdmin';
 import { Select } from '@chakra-ui/react';
 import { Link, useNavigate } from 'react-router-dom';
+import SelectUser from './SelectUser';
 
 export default function ScreenDescription(props) {
   const [data, setData] = useState(null);
@@ -69,7 +70,7 @@ export default function ScreenDescription(props) {
   } else if (!loading) {
     return (
       <>
-        <HeaderAdmin/>
+        <HeaderAdmin />
         <Center padding={20}>
           <VStack spacing={20}>
             <Flex
@@ -110,7 +111,10 @@ export default function ScreenDescription(props) {
                 >
                   <Stack spacing={4} direction="row">
                     <Radio value="1">Administrador</Radio>
-                    <Radio value="2">Colaborador</Radio>
+                    <Radio value="2">
+                      Colaborador
+                      <SelectUser click={click} />
+                    </Radio>
                   </Stack>
                 </RadioGroup>
               </Center>
