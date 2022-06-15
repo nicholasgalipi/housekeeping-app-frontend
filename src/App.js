@@ -4,13 +4,16 @@ import AdminScreen from './components/admin/AdminScreen';
 import AdminEditScreen from './components/admin/AdminEditScreen';
 import UserScreen from './components/user/UserScreen';
 import UserEditScreen from './components/user/UserEditScreen';
-
+import Login from './components/login/Login';
 
 function App() {
 
   return(
     <BrowserRouter>
       <Routes>
+        <Route path='/' element={<Login />}/>
+
+
         <Route path='admin' element={<AdminScreen />}/>
         <Route path='/admin/:roomID' element={<AdminEditScreen />} />
 
