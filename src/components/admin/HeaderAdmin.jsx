@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Flex,
@@ -37,53 +38,48 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 
 export default function HeaderAdmin() {
   const { isOpen } = useDisclosure();
+  let navigate = useNavigate();
 
   return (
     <>
-      <Box bg={'purple.200'} p={2} boxShadow={'md'} >
+      <Box bg={'purple.200'} p={2} boxShadow={'md'}>
         <Flex h={10} alignItems={'center'} justifyContent={'space-between'}>
-        
-         
-        <HStack pl={3}>
+          <HStack pl={3}>
+            <Heading
+              HeadingTransform="uppercase"
+              fontSize="3xl"
+              fontWeight="bold"
+              color="purple.500"
+            >
+              Lavender
+            </Heading>
 
-          <Heading
-            HeadingTransform="uppercase"
-            fontSize="3xl"
-            fontWeight="bold"
-            color="purple.500"
-          >
-          Lavender    
-          </Heading>
-
-          <Heading
-            HeadingTransform="uppercase"
-            fontSize="md"
-            fontWeight="italic"
-            color="white"
-            pt={3}
-          >
-          housekeeping
-          </Heading>
-         
-        </HStack>
-
-
-
+            <Heading
+              HeadingTransform="uppercase"
+              fontSize="md"
+              fontWeight="italic"
+              color="white"
+              pt={3}
+            >
+              housekeeping
+            </Heading>
+          </HStack>
 
           <Box pr={3}>
             <Menu>
-              <MenuButton >
-                <SettingsIcon color='purple.600' />
+              <MenuButton>
+                <SettingsIcon color="purple.600" />
               </MenuButton>
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
+                <MenuItem>
+                  <Link onClick={() => navigate ('/admin/newusuario')}> Create new Employee</Link>
+                </MenuItem>
                 <MenuItem>Link 2</MenuItem>
                 <MenuDivider />
                 <MenuItem>Link 3</MenuItem>
               </MenuList>
             </Menu>
           </Box>
-
         </Flex>
 
         {isOpen ? (

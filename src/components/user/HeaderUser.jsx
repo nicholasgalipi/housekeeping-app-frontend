@@ -74,7 +74,7 @@ export default function HeaderUser() {
 
 
 
-          <Box pr={3}>
+          {/* <Box pr={3}>
             <Menu>
               <MenuButton >
                 <SettingsIcon color='purple.600' />
@@ -86,7 +86,7 @@ export default function HeaderUser() {
                 <MenuItem>Link 3</MenuItem>
               </MenuList>
             </Menu>
-          </Box>
+          </Box> */}
 
         </Flex>
 
