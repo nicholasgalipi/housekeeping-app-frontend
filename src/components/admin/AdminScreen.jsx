@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Spinner , Center, Box} from '@chakra-ui/react'
-import Card from './Card';
+import { Spinner , Center} from '@chakra-ui/react'
 import axios from "axios"
 import HeaderAdmin from './HeaderAdmin';
+import AdminFilterBtn from './AdminFilterBtn';
+import AdminGrid from './AdminGrid';
 
 function AdminScreen() {
   
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
-  
+  const [filter, setFilter] = useState(null);
+  console.log(filter)
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -29,6 +31,9 @@ function AdminScreen() {
     getData();
   }, []);
 
+
+  
+
   if(loading){  
     return (
           <Center>
@@ -39,14 +44,10 @@ function AdminScreen() {
     return (
         <> 
           <HeaderAdmin />
-          <Grid templateColumns='repeat(8, 1fr)' gap={3} p={3}>
-            {data.map((data) => { return <Card roomNumber={data.number} roomStatus={data.roomStatus} roomID={data._id} guestName={data.nameOfGuest}/>  } )}
-          </Grid>
-      
-
+          <AdminFilterBtn setFilter={setFilter}/>
+          <AdminGrid data={data} filter={filter}/>
         </>
   );}
-  
 }
 
 export default AdminScreen
