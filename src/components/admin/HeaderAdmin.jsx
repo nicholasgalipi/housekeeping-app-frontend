@@ -53,7 +53,11 @@ export default function HeaderAdmin() {
                 <SettingsIcon color='purple.600' />
               </MenuButton>
               <MenuList color='purple' >
-                <MenuItem>New employee</MenuItem>
+                
+                <Link to={'/admin/edit_employee'}>
+                  <MenuItem>Edit employee</MenuItem>
+                </Link>
+                
                 <MenuItem>Edit rooms</MenuItem>
                 
                 <MenuDivider />

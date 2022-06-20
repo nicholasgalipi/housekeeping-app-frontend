@@ -29,7 +29,7 @@ function EmployeePicker({employeeHandler, selected}) {
         getData();
     }, []);
     if(loading){
-        <Skeleton height='20px' />
+        return <Skeleton height='20px' />
     }
     if(!loading && selected === 'user'){
         return (
