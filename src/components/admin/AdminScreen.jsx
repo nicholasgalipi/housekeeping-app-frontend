@@ -10,7 +10,7 @@ function AdminScreen() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filter, setFilter] = useState(null);
+  const [filter, setFilter] = useState("None");
   console.log(filter)
 
   useEffect(() => {

@@ -1,25 +1,23 @@
-import { Box, Flex, Button,Menu, MenuButton, MenuItem,MenuList} from "@chakra-ui/react"
-import { ChevronDownIcon } from "@chakra-ui/icons"
+import { Box, Flex, Text, Select,HStack} from "@chakra-ui/react"
 
 function AdminFilterBtn({setFilter}) {
   return (
-   <Box p={3}>
         <Flex justify={'right'} >
-           
-
-            <Menu>
-                <MenuButton as={Button} rightIcon={<ChevronDownIcon  />} colorScheme='purple' variant='ghost' size='lg'>
-                   Filter
-                </MenuButton>
-                <MenuList>
-                    <MenuItem onClick={() => setFilter('Ready for guest')}>Ready for guest</MenuItem>
-                    <MenuItem onClick={() => setFilter('Occupied')}>Occupied</MenuItem>
-                    <MenuItem onClick={() => setFilter('Waiting cleaning')}>Waiting cleaning</MenuItem>
-                    <MenuItem onClick={() => setFilter('Assigned for cleaning')}>Assigned for cleaning</MenuItem>
-                </MenuList>
-            </Menu>
+            <Box p={5}  w='250px'>
+                <Select
+                        onChange={(e) => {setFilter(e.target.value)}} 
+                        size='md' 
+                        borderColor='purple.500'
+                        placeholder="Select a filter"
+                        >
+                            <option value='None'>None</option>
+                            <option value='Ready for guest'>Ready for guest</option>
+                            <option value='Occupied'>Occupied</option>
+                            <option value='Waiting cleaning'>Waiting cleaning</option>
+                            <option value='Assigned for cleaning'>Assigned for cleaning</option>
+                </Select>
+            </Box>
         </Flex>
-   </Box>
   )
 }
 

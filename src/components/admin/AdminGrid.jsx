@@ -4,12 +4,14 @@ import Card from './Card'
 
 function AdminGrid({data, filter}) {
     let newData = data
-    if (filter !== null) { 
+    
+    if (filter !== "None") { 
         newData = data.filter((data) => { return data.roomStatus === filter})
-        console.log(newData)
     }
-  
-  
+    
+    if (filter === "None") { 
+      newData = data
+  }
   
     return (
     <Grid templateColumns='repeat(8, 1fr)' gap={3} p={3}>
