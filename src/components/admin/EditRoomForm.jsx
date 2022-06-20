@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Stack,WrapItem, Button,Text,Input,Select } from '@chakra-ui/react'
+import { Stack,WrapItem, Button,Text,Input,useToast  } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
@@ -9,33 +9,58 @@ function EditRoomForm({status, roomData}) {
   const [guestName,setGuestName] = useState('')
   const [employee,setEmployee] = useState('')
   let navigate = useNavigate();
+  const toast = useToast()
   const employeeHandler = (emp ) => {
     setEmployee(emp)
   }
-    const handleSubmitOccupied = async (e) => {
+console.log(roomData)
+    const handleSubmit = async (e) =>{
         e.preventDefault();
-        await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=${guestName}&roomStatus=Occupied&obs=&assigned=false&assignedTo=`);
-        navigate("/admin", { replace: true });
-    }
-    const handleSubmitReady= async (e) => {
-        e.preventDefault();
-        await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=&roomStatus=Ready for guest&obs=&assigned=false&assignedTo=`);
-        navigate("/admin", { replace: true });
-    }
-    const handleSubmitAssignedCleaning = async (e) => {
-        e.preventDefault();
-        await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=&roomStatus=Assigned for cleaning&obs=&assigned=true&assignedTo=${employee}`);
-        navigate("/admin", { replace: true });
-    }
-    const handleSubmitWaitingCLeaning = async (e) => {
-        e.preventDefault();
-        await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=&roomStatus=Waiting cleaning&obs=&assigned=false&assignedTo=`);
-        navigate("/admin", { replace: true });
+        let roomStatus = ''
+        let obs = ''
+        let assigned = false
+        let assignedTo = ''
+        
+        if(status === 'Occupied'){
+            roomStatus = 'Occupied'
+        }
+        else if(status === 'Assigned for cleaning'){
+            roomStatus = 'Assigned for cleaning'
+            assigned = true
+            assignedTo = employee
+        }
+        else if(status === 'Ready for guest'){
+            roomStatus = 'Ready for guest'
+        }
+        else if(status === 'Waiting cleaning'){
+            roomStatus = 'Waiting cleaning'
+        }
+
+        try{
+            await axios.put(`http://localhost:3001/rooms/${roomData._id}/updateRoom?&nameOfGuest=${guestName}&roomStatus=${roomStatus}&obs=${obs}&assigned=${assigned}&assignedTo=${assignedTo}`);
+            toast({
+                title: 'Succes.',
+                description: `Changed room ${roomData.number} status to ${status}`,
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+              })
+            navigate("/admin", { replace: true });
+        }catch (err){
+            toast({
+                title: 'Error',
+                description: `${err}`,
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+              })
+        }
+
     }
     
   if(status === 'Occupied'){
     return (
-            <form onSubmit={handleSubmitOccupied}>
+            <form onSubmit={handleSubmit}>
 
                 <Stack   direction={'row'} spacing={2}>
                     <Text
@@ -70,7 +95,7 @@ function EditRoomForm({status, roomData}) {
 
   if(status === 'Assigned for cleaning'){
     return (
-            <form onSubmit={handleSubmitAssignedCleaning}>
+            <form onSubmit={handleSubmit}>
 
                 <Stack   direction={'row'} spacing={2}>
                     <Text
@@ -105,7 +130,7 @@ function EditRoomForm({status, roomData}) {
 
   if(status === 'Ready for guest'){
     return (
-            <form onSubmit={handleSubmitReady}>
+            <form onSubmit={handleSubmit}>
 
                
                <Stack mt={8} direction={'row'} spacing={10} justifyContent='center'>
@@ -125,7 +150,7 @@ function EditRoomForm({status, roomData}) {
 
   if(status === 'Waiting cleaning'){
     return (
-            <form onSubmit={handleSubmitWaitingCLeaning}>
+            <form onSubmit={handleSubmit}>
 
                
                <Stack mt={8} direction={'row'} spacing={10} justifyContent='center'>
