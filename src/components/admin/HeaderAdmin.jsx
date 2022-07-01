@@ -55,10 +55,12 @@ export default function HeaderAdmin() {
               <MenuList color='purple' >
                 
                 <Link to={'/admin/edit_employee'}>
-                  <MenuItem>Edit employee</MenuItem>
+                  <MenuItem>Create/remove employee</MenuItem>
                 </Link>
                 
-                <MenuItem>Edit rooms</MenuItem>
+                <Link to={'/admin/dashboard'}>
+                  <MenuItem>Employee dashboard</MenuItem>
+                </Link>
                 
                 <MenuDivider />
                 <Link to={'/'}><MenuItem>Log out</MenuItem> </Link>
