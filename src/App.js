@@ -6,26 +6,29 @@ import UserScreen from './components/user/UserScreen';
 import UserEditScreen from './components/user/UserEditScreen';
 import Login from './components/login/Login';
 import EditEmployeeScreen from './components/admin/edit employee/EditEmployeeScreen';
+import LoginEmail from './components/login/LoginEmail';
+import AppRoutes from './AppRoutes';
 
 function App() {
 
-  return(
+  return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login />}/>
+        {/* <AppRoutes> */}
+        <Route exact path="/" element={<LoginEmail />} />
 
+        <Route path="admin" element={<AdminScreen />} />
+        <Route path="/admin/:roomID" element={<AdminEditScreen />} />
+        <Route path="/admin/edit_employee" element={<EditEmployeeScreen />} />
 
-        <Route path='admin' element={<AdminScreen />}/>
-        <Route path='/admin/:roomID' element={<AdminEditScreen />} />
-        <Route path='/admin/edit_employee' element={<EditEmployeeScreen />} />
-
-        <Route path='/user/:employeeID' element={<UserScreen />}/>
-        <Route path='/user/:employeeID/edit/:roomNumber' element={<UserEditScreen />} />
-       
-        
+        <Route path="/user/:employeeID" element={<UserScreen />} />
+        <Route
+          path="/user/:employeeID/edit/:roomNumber"
+          element={<UserEditScreen />}
+        />
       </Routes>
     </BrowserRouter>
-  )
+  );
  
   
 

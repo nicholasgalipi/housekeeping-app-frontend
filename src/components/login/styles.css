@@ -1,0 +1,35 @@
+#login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    padding: 0 2rem;
+}
+
+#login .form {
+    background-color: #f1f1f1;
+    width: 100%;
+    max-width: 600px;
+    padding: .5rem;
+}
+
+#login .field {
+    padding-bottom: .5rem;
+} 
+#login .field label{
+    display: block;
+}
+
+#login .field input{
+    width: 100%;
+}
+
+#login .action {
+    text-align: center;
+    margin-top: .5rem;
+    border: solid rgb(178, 134, 209);
+    width: 100px;
+    background-color:rgb(178, 134, 209);
+    margin-left: 45px;
+}
